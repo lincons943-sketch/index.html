@@ -6,12 +6,16 @@
 const DAILY_LIMIT = 100;
 let currentUsage = 80;
 
+// Chat History
+let chatHistory = [];
+
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', () => {
     updateDailyLimit();
     setupNavigation();
     setupToolModals();
     animateOnScroll();
+    initializeChat();
 });
 
 // ============================================
@@ -61,12 +65,139 @@ function useCredits(amount) {
     if (currentUsage + amount <= DAILY_LIMIT) {
         currentUsage += amount;
         updateDailyLimit();
-        showNotification(`Used ${amount} credits! (${currentUsage}/${DAILY_LIMIT})`);
+        showNotification(`✅ Used ${amount} credits! (${currentUsage}/${DAILY_LIMIT})`);
         return true;
     } else {
         showNotification('⚠️ Daily limit exceeded! Upgrade to Premium for unlimited usage.', 'error');
         return false;
     }
+}
+
+// ============================================
+// CHAT FUNCTIONALITY
+// ============================================
+
+function initializeChat() {
+    // Add initial bot message
+    addBotMessage("Hello! I'm your GameForge AI Assistant. How can I help you with your game development today? I can assist with scripting, 3D modeling, building, debugging, VFX, and more!");
+}
+
+function handleChatKeypress(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendChatMessage();
+    }
+}
+
+function sendChatMessage() {
+    const chatInput = document.getElementById('chatInput');
+    const message = chatInput.value.trim();
+    
+    if (!message) return;
+    
+    // Add user message
+    addUserMessage(message);
+    
+    // Clear input
+    chatInput.value = '';
+    chatInput.focus();
+    
+    // Use credits
+    if (!useCredits(5)) return;
+    
+    // Simulate bot response
+    setTimeout(() => {
+        const response = generateAIResponse(message);
+        addBotMessage(response);
+    }, 500);
+}
+
+function addUserMessage(message) {
+    const chatMessages = document.getElementById('chatMessages');
+    const messageEl = document.createElement('div');
+    messageEl.className = 'chat-message user-message';
+    messageEl.innerHTML = `
+        <div class="message-content">
+            <p>${escapeHtml(message)}</p>
+        </div>
+        <div class="message-avatar">👤</div>
+    `;
+    chatMessages.appendChild(messageEl);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    chatHistory.push({ role: 'user', content: message });
+}
+
+function addBotMessage(message) {
+    const chatMessages = document.getElementById('chatMessages');
+    const messageEl = document.createElement('div');
+    messageEl.className = 'chat-message bot-message';
+    messageEl.innerHTML = `
+        <div class="message-avatar">🤖</div>
+        <div class="message-content">
+            <p>${message}</p>
+        </div>
+    `;
+    chatMessages.appendChild(messageEl);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    chatHistory.push({ role: 'bot', content: message });
+}
+
+function generateAIResponse(userMessage) {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    // Script Generator responses
+    if (lowerMessage.includes('script') || lowerMessage.includes('code') || lowerMessage.includes('roblox')) {
+        return "I can help you generate scripts! The Script Generator supports Roblox Lua, Unity C#, Godot GDScript, and Unreal C++. Just describe what you want to create, and I'll generate the code for you. Would you like to try the Script Generator tool?";
+    }
+    
+    // Model Assistant responses
+    if (lowerMessage.includes('model') || lowerMessage.includes('3d') || lowerMessage.includes('character') || lowerMessage.includes('prop')) {
+        return "Great! I can help you create 3D models, characters, and props. The Model Assistant converts your text descriptions into 3D assets. You can generate characters, props, or entire environments. Ready to create something amazing?";
+    }
+    
+    // Building Tool responses
+    if (lowerMessage.includes('map') || lowerMessage.includes('terrain') || lowerMessage.includes('world') || lowerMessage.includes('building')) {
+        return "The Building Tool is perfect for generating maps and worlds! You can create custom terrain, structures, and environments. Just describe your vision and set the map size (64-1024 studs). Let me know what kind of world you want to build!";
+    }
+    
+    // Debugger responses
+    if (lowerMessage.includes('debug') || lowerMessage.includes('error') || lowerMessage.includes('bug') || lowerMessage.includes('fix')) {
+        return "I can help you debug your code! Paste your error message or problematic code, and I'll analyze it and suggest fixes. The Code Debugger identifies issues and provides step-by-step solutions. What code needs debugging?";
+    }
+    
+    // VFX responses
+    if (lowerMessage.includes('effect') || lowerMessage.includes('particle') || lowerMessage.includes('animation') || lowerMessage.includes('vfx')) {
+        return "Awesome! The VFX Creator can generate particle effects, animations, and visual elements. I have preset effects like explosions, magic spells, healing effects, and teleportation. Or I can create custom effects from your description!";
+    }
+    
+    // Learning responses
+    if (lowerMessage.includes('learn') || lowerMessage.includes('tutorial') || lowerMessage.includes('lesson') || lowerMessage.includes('teach')) {
+        return "I'm here to teach you game development! I offer beginner, intermediate, and advanced courses. You can learn Roblox development, Lua scripting, 3D modeling, and more. Which topic interests you?";
+    }
+    
+    // Daily limit responses
+    if (lowerMessage.includes('limit') || lowerMessage.includes('credit') || lowerMessage.includes('usage')) {
+        return `You currently have ${DAILY_LIMIT - currentUsage} credits remaining out of ${DAILY_LIMIT} daily credits. Premium members get unlimited credits. Each tool uses different amounts of credits - scripts use 10, models use 15, maps use 20, and more!`;
+    }
+    
+    // Project responses
+    if (lowerMessage.includes('project') || lowerMessage.includes('game')) {
+        return "You have 12 active projects! You can create a new project by clicking the '+ New Project' button. Each project can include scripts, models, maps, and more. What kind of game are you working on?";
+    }
+    
+    // Default response
+    return "That's a great question! I'm here to help you with game development. I can assist with script generation, 3D modeling, world building, code debugging, visual effects, and learning resources. Try asking me about any of these topics or click on any of the AI tools to get started!";
+}
+
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, m => map[m]);
 }
 
 // ============================================
@@ -661,7 +792,7 @@ function animateOnScroll() {
         });
     }, observerOptions);
     
-    document.querySelectorAll('.stat-card, .tool-card, .project-card, .learning-card').forEach(el => {
+    document.querySelectorAll('.stat-card, .tool-card, .learning-card').forEach(el => {
         observer.observe(el);
     });
 }
