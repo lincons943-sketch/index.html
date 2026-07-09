@@ -93,6 +93,36 @@
                 </div>
             </div>
 
+            <!-- AI Chat Box -->
+            <div class="ai-chat-section">
+                <h2>🤖 AI Assistant Chat</h2>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-message bot-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>Hello! I'm your GameForge AI Assistant. How can I help you with your game development today? I can assist with scripting, 3D modeling, building, debugging, VFX, and more!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-area">
+                        <input 
+                            type="text" 
+                            id="chatInput" 
+                            class="chat-input" 
+                            placeholder="Ask me anything about game development..." 
+                            onkeypress="handleChatKeypress(event)"
+                        >
+                        <button class="chat-send-btn" onclick="sendChatMessage()">
+                            <span>Send</span>
+                            <span class="send-icon">➤</span>
+                        </button>
+                    </div>
+                    <p class="chat-info">💡 Tip: Ask about tools, scripts, models, debugging, or learning resources!</p>
+                </div>
+            </div>
+
             <!-- Quick Access Tools -->
             <h2 class="section-subtitle" style="margin-top: 40px;">Quick Access</h2>
             <div class="quick-tools">
