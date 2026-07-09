@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameForge AI - Game Development Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    <div class="stars"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">GameForge AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#learning" class="nav-link">Learn</a></li>
+                <li><a href="#profile" class="nav-link">Profile</a></li>
+            </ul>
+            <div class="daily-limit-nav">
+                <span class="limit-label">Daily Limit</span>
+                <div class="limit-bar">
+                    <div class="limit-fill" id="navLimitFill"></div>
+                </div>
+                <span class="limit-text" id="navLimitText">80/100</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section">
+            <div class="section-header">
+                <h1 class="section-title">Dashboard</h1>
+                <p class="section-subtitle">Your AI-Powered Game Development Hub</p>
+            </div>
+
+            <!-- User Stats -->
+            <div class="stats-grid">
+                <div class="stat-card neon-blue">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <p class="stat-label">Projects Created</p>
+                        <p class="stat-value">12</p>
+                    </div>
+                </div>
+                <div class="stat-card neon-purple">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-content">
+                        <p class="stat-label">AI Calls Today</p>
+                        <p class="stat-value">20/100</p>
+                    </div>
+                </div>
+                <div class="stat-card neon-cyan">
+                    <div class="stat-icon">🎮</div>
+                    <div class="stat-content">
+                        <p class="stat-label">Games Published</p>
+                        <p class="stat-value">3</p>
+                    </div>
+                </div>
+                <div class="stat-card neon-green">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <p class="stat-label">Level</p>
+                        <p class="stat-value">Pro</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Limit Card -->
+            <div class="daily-limit-card">
+                <h2>📈 Daily Usage Limit</h2>
+                <div class="limit-details">
+                    <div class="limit-progress">
+                        <div class="limit-bar-large">
+                            <div class="limit-fill-large" id="mainLimitFill" style="width: 80%;"></div>
+                        </div>
+                        <p class="limit-counter"><strong id="mainLimitCounter">80</strong> / 100 credits used</p>
+                    </div>
+                    <div class="limit-info">
+                        <p>🔄 <strong>Resets:</strong> In 8 hours</p>
+                        <p>⏳ <strong>Premium:</strong> Unlimited usage</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Access Tools -->
+            <h2 class="section-subtitle" style="margin-top: 40px;">Quick Access</h2>
+            <div class="quick-tools">
+                <button class="tool-btn" onclick="openTool('script-gen')">
+                    <span class="tool-icon">📝</span>
+                    <span class="tool-name">Script Generator</span>
+                    <span class="tool-desc">Roblox Lua & Engine Scripts</span>
+                </button>
+                <button class="tool-btn" onclick="openTool('model-assistant')">
+                    <span class="tool-icon">🎨</span>
+                    <span class="tool-name">Model Assistant</span>
+                    <span class="tool-desc">Props & Characters</span>
+                </button>
+                <button class="tool-btn" onclick="openTool('builder')">
+                    <span class="tool-icon">🏗️</span>
+                    <span class="tool-name">Building Tool</span>
+                    <span class="tool-desc">Maps & Terrain</span>
+                </button>
+                <button class="tool-btn" onclick="openTool('debugger')">
+                    <span class="tool-icon">🐛</span>
+                    <span class="tool-name">Code Debugger</span>
+                    <span class="tool-desc">Errors & Optimization</span>
+                </button>
+                <button class="tool-btn" onclick="openTool('vfx')">
+                    <span class="tool-icon">✨</span>
+                    <span class="tool-name">VFX Creator</span>
+                    <span class="tool-desc">Particles & Animations</span>
+                </button>
+                <button class="tool-btn" onclick="openTool('ai-mentor')">
+                    <span class="tool-icon">🤖</span>
+                    <span class="tool-name">AI Mentor</span>
+                    <span class="tool-desc">Learn Game Dev</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="section">
+            <div class="section-header">
+                <h1 class="section-title">AI Tools</h1>
+                <p class="section-subtitle">Powerful Features for Game Development</p>
+            </div>
+
+            <div class="tools-grid">
+                <!-- Script Generator -->
+                <div class="tool-card">
+                    <div class="tool-card-header script-gen-header">
+                        <span class="tool-emoji">📝</span>
+                        <h3>Script Generator</h3>
+                    </div>
+                    <p class="tool-desc-full">Generate Lua scripts for Roblox and code for other game engines with AI assistance.</p>
+                    <div class="tool-usage">
+                        <span>25 generations today</span>
+                        <span class="usage-bar"><span class="usage-fill" style="width: 50%;"></span></span>
+                    </div>
+                    <button class="btn btn-primary" onclick="openTool('script-gen')">Launch Tool</button>
+                </div>
+
+                <!-- Model Assistant -->
+                <div class="tool-card">
+                    <div class="tool-card-header model-assistant-header">
+                        <span class="tool-emoji">🎨</span>
+                        <h3>Model Assistant</h3>
+                    </div>
+                    <p class="tool-desc-full">Create 3D props, characters, and textures from text prompts powered by AI.</p>
+                    <div class="tool-usage">
+                        <span>15 models created</span>
+                        <span class="usage-bar"><span class="usage-fill" style="width: 30%;"></span></span>
+                    </div>
+                    <button class="btn btn-primary" onclick="openTool('model-assistant')">Launch Tool</button>
+                </div>
+
+                <!-- Building Tool -->
+                <div class="tool-card">
+                    <div class="tool-card-header builder-header">
+                        <span class="tool-emoji">🏗️</span>
+                        <h3>Building Tool</h3>
+                    </div>
+                    <p class="tool-desc-full">Generate maps, terrain, and structures for your games instantly.</p>
+                    <div class="tool-usage">
+                        <span>8 worlds built</span>
+                        <span class="usage-bar"><span class="usage-fill" style="width: 16%;"></span></span>
+                    </div>
+                    <button class="btn btn-primary" onclick="openTool('builder')">Launch Tool</button>
+                </div>
+
+                <!-- Code Debugger -->
+                <div class="tool-card">
+                    <div class="tool-card-header debugger-header">
+                        <span class="tool-emoji">🐛</span>
+                        <h3>Code Debugger</h3>
+                    </div>
+                    <p class="tool-desc-full">AI-powered debugger that explains errors and suggests fixes instantly.</p>
+                    <div class="tool-usage">
+                        <span>42 bugs fixed</span>
+                        <span class="usage-bar"><span class="usage-fill" style="width: 84%;"></span></span>
+                    </div>
+                    <button class="btn btn-primary" onclick="openTool('debugger')">Launch Tool</button>
+                </div>
+
+                <!-- VFX Creator -->
+                <div class="tool-card">
+                    <div class="tool-card-header vfx-header">
+                        <span class="tool-emoji">✨</span>
+                        <h3>VFX Creator</h3>
+                    </div>
+                    <p class="tool-desc-full">Create particle effects, animations, and stunning UI elements.</p>
+                    <div class="tool-usage">
+                        <span>12 effects created</span>
+                        <span class="usage-bar"><span class="usage-fill" style="width: 24%;"></span></span>
+                    </div>
+                    <button class="btn btn-primary" onclick="openTool('vfx')">Launch Tool</button>
+                </div>
+
+                <!-- AI Mentor -->
+                <div class="tool-card">
+                    <div class="tool-card-header mentor-header">
+                        <span class="tool-emoji">🤖</span>
+                        <h3>AI Mentor</h3>
+                    </div>
+                    <p class="tool-desc-full">Learn game development step by step with interactive tutorials and challenges.</p>
+                    <div class="tool-usage">
+                        <span>5 lessons completed</span>
+                        <span class="usage-bar"><span class="usage-fill" style="width: 10%;"></span></span>
+                    </div>
+                    <button class="btn btn-primary" onclick="openTool('ai-mentor')">Launch Tool</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="section-header">
+                <h1 class="section-title">Your Projects</h1>
+                <button class="btn btn-primary" onclick="createNewProject()">+ New Project</button>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-cover" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="project-info">
+                        <h3>Fantasy RPG</h3>
+                        <p class="project-desc">An epic fantasy adventure game</p>
+                        <p class="project-date">Last edited: 2 days ago</p>
+                        <div class="project-tools">
+                            <span class="tool-tag">Roblox</span>
+                            <span class="tool-tag">Lua</span>
+                        </div>
+                        <button class="btn btn-small" onclick="openProject('fantasy-rpg')">Open</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-cover" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="project-info">
+                        <h3>Neon Racer</h3>
+                        <p class="project-desc">Fast-paced arcade racing game</p>
+                        <p class="project-date">Last edited: 1 day ago</p>
+                        <div class="project-tools">
+                            <span class="tool-tag">Unity</span>
+                            <span class="tool-tag">C#</span>
+                        </div>
+                        <button class="btn btn-small" onclick="openProject('neon-racer')">Open</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <div class="project-info">
+                        <h3>Puzzle Master</h3>
+                        <p class="project-desc">Mind-bending puzzle game</p>
+                        <p class="project-date">Last edited: Today</p>
+                        <div class="project-tools">
+                            <span class="tool-tag">Godot</span>
+                            <span class="tool-tag">GDScript</span>
+                        </div>
+                        <button class="btn btn-small" onclick="openProject('puzzle-master')">Open</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Section -->
+        <section id="learning" class="section">
+            <div class="section-header">
+                <h1 class="section-title">Learning Center</h1>
+                <p class="section-subtitle">Tutorials, Challenges & AI Mentorship</p>
+            </div>
+
+            <div class="learning-grid">
+                <div class="learning-card">
+                    <div class="learning-level">Beginner</div>
+                    <h3>Getting Started with Roblox</h3>
+                    <p>Learn the basics of Roblox game development.</p>
+                    <div class="learning-progress">
+                        <span>3/10 lessons</span>
+                        <div class="progress-bar"><span style="width: 30%;"></span></div>
+                    </div>
+                    <button class="btn btn-secondary">Continue</button>
+                </div>
+
+                <div class="learning-card">
+                    <div class="learning-level intermediate">Intermediate</div>
+                    <h3>Advanced Lua Scripting</h3>
+                    <p>Master Lua scripting for complex game mechanics.</p>
+                    <div class="learning-progress">
+                        <span>7/15 lessons</span>
+                        <div class="progress-bar"><span style="width: 47%;"></span></div>
+                    </div>
+                    <button class="btn btn-secondary">Continue</button>
+                </div>
+
+                <div class="learning-card">
+                    <div class="learning-level advanced">Advanced</div>
+                    <h3>3D Modeling & Texturing</h3>
+                    <p>Create professional 3D assets for your games.</p>
+                    <div class="learning-progress">
+                        <span>5/20 lessons</span>
+                        <div class="progress-bar"><span style="width: 25%;"></span></div>
+                    </div>
+                    <button class="btn btn-secondary">Continue</button>
+                </div>
+            </div>
+
+            <div class="challenges-section">
+                <h2>🎯 Daily Challenges</h2>
+                <div class="challenge-list">
+                    <div class="challenge-item">
+                        <div class="challenge-icon">⚔️</div>
+                        <div class="challenge-content">
+                            <h4>Create a Moving Platform</h4>
+                            <p>Use the Script Generator to create a platform that moves from point A to B.</p>
+                            <span class="challenge-reward">+50 XP</span>
+                        </div>
+                        <button class="btn btn-small">Accept</button>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-icon">🎨</div>
+                        <div class="challenge-content">
+                            <h4>Design a Character Model</h4>
+                            <p>Use the Model Assistant to generate a unique character design.</p>
+                            <span class="challenge-reward">+75 XP</span>
+                        </div>
+                        <button class="btn btn-small">Accept</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Tool Modal -->
+    <div id="toolModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTool()">&times;</span>
+            <div id="toolContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
