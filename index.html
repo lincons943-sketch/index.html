@@ -20,10 +20,10 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#chat" class="nav-link">Chat</a></li>
                 <li><a href="#tools" class="nav-link">Tools</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#learning" class="nav-link">Learn</a></li>
-                <li><a href="#profile" class="nav-link">Profile</a></li>
             </ul>
             <div class="daily-limit-nav">
                 <span class="limit-label">Daily Limit</span>
@@ -93,36 +93,6 @@
                 </div>
             </div>
 
-            <!-- AI Chat Box -->
-            <div class="ai-chat-section">
-                <h2>🤖 AI Assistant Chat</h2>
-                <div class="chat-container">
-                    <div class="chat-messages" id="chatMessages">
-                        <div class="chat-message bot-message">
-                            <div class="message-avatar">🤖</div>
-                            <div class="message-content">
-                                <p>Hello! I'm your GameForge AI Assistant. How can I help you with your game development today? I can assist with scripting, 3D modeling, building, debugging, VFX, and more!</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="chat-input-area">
-                        <input 
-                            type="text" 
-                            id="chatInput" 
-                            class="chat-input" 
-                            placeholder="Ask me anything about game development..." 
-                            onkeypress="handleChatKeypress(event)"
-                        >
-                        <button class="chat-send-btn" onclick="sendChatMessage()">
-                            <span>Send</span>
-                            <span class="send-icon">➤</span>
-                        </button>
-                    </div>
-                    <p class="chat-info">💡 Tip: Ask about tools, scripts, models, debugging, or learning resources!</p>
-                </div>
-            </div>
-
             <!-- Quick Access Tools -->
             <h2 class="section-subtitle" style="margin-top: 40px;">Quick Access</h2>
             <div class="quick-tools">
@@ -156,6 +126,119 @@
                     <span class="tool-name">AI Mentor</span>
                     <span class="tool-desc">Learn Game Dev</span>
                 </button>
+            </div>
+        </section>
+
+        <!-- AI Chat Section -->
+        <section id="chat" class="section chat-section">
+            <div class="section-header">
+                <h1 class="section-title">AI Assistant</h1>
+                <p class="section-subtitle">Advanced AI powered by GPT-4 for game development</p>
+            </div>
+
+            <div class="chat-wrapper">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <div class="chat-header-content">
+                            <h3>GameForge AI Pro</h3>
+                            <p class="chat-status">🟢 Online - Advanced Mode</p>
+                        </div>
+                        <div class="chat-model-badge">GPT-4 Turbo</div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-message bot-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>Hello! I'm GameForge AI Pro, your advanced game development assistant powered by GPT-4 Turbo. I can help you with:</p>
+                                <ul class="bot-capabilities">
+                                    <li>✨ Script generation and optimization</li>
+                                    <li>🎨 3D model creation and texturing</li>
+                                    <li>🏗️ Game world building and design</li>
+                                    <li>🐛 Code debugging and analysis</li>
+                                    <li>✨ Visual effects and animations</li>
+                                    <li>📚 Game development education</li>
+                                </ul>
+                                <p style="margin-top: 15px;">What would you like to create today?</p>
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-wrapper">
+                        <div class="chat-input-container">
+                            <textarea 
+                                id="chatInput" 
+                                class="chat-input" 
+                                placeholder="Ask me anything about game development... (Shift+Enter for new line)" 
+                                onkeypress="handleChatKeypress(event)"
+                            ></textarea>
+                            <div class="input-actions">
+                                <button class="action-btn" onclick="attachFile()" title="Attach file">
+                                    <span>📎</span>
+                                </button>
+                                <button class="action-btn" onclick="voiceInput()" title="Voice input">
+                                    <span>🎤</span>
+                                </button>
+                                <button class="chat-send-btn" onclick="sendChatMessage()" title="Send message (Ctrl+Enter)">
+                                    <span>Send</span>
+                                    <span class="send-icon">✈️</span>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="chat-footer-info">💡 Pro Tip: Use specific details for better AI responses. Try asking about optimization, best practices, or architecture!</p>
+                    </div>
+                </div>
+
+                <!-- Chat Sidebar -->
+                <div class="chat-sidebar">
+                    <div class="sidebar-section">
+                        <h4>Recent Chats</h4>
+                        <div class="chat-history">
+                            <div class="history-item">
+                                <div class="history-title">Roblox Movement Script</div>
+                                <div class="history-date">Today</div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-title">Character Design Tips</div>
+                                <div class="history-date">Yesterday</div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-title">Debug NPC AI</div>
+                                <div class="history-date">2 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h4>Quick Prompts</h4>
+                        <button class="quick-prompt" onclick="insertPrompt('Generate a Roblox movement script with sprint functionality')">
+                            <span>📝</span>
+                            <span>Movement Script</span>
+                        </button>
+                        <button class="quick-prompt" onclick="insertPrompt('Create a procedural terrain generation algorithm')">
+                            <span>🏗️</span>
+                            <span>Terrain Gen</span>
+                        </button>
+                        <button class="quick-prompt" onclick="insertPrompt('Debug my game code and optimize performance')">
+                            <span>🐛</span>
+                            <span>Debug Code</span>
+                        </button>
+                        <button class="quick-prompt" onclick="insertPrompt('Design a particle effect system for magic spells')">
+                            <span>✨</span>
+                            <span>Particle FX</span>
+                        </button>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h4>Model</h4>
+                        <div class="model-info">
+                            <p>GPT-4 Turbo</p>
+                            <p class="model-description">Advanced reasoning & code generation</p>
+                            <button class="model-upgrade">Upgrade to Max</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
